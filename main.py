@@ -20,30 +20,30 @@ stack = []
 def logic():
     global label
     global stack
-    res = 0
-    number2 = Decimal(stack.pop())
-    operation = stack.pop
-    number1 = Decimal(stack.pop())
+    result = 0
+    operand2 = Decimal(stack.pop())
+    operation = stack.pop()
+    operand1 = Decimal(stack.pop())
 
-    if operation == "+":
-        res = number1 + number2
-    if operation == "-":
-        res = number1 - number2
-    if operation == "*":
-        res = number1 * number2
-    if operation == "/":
-        res = number1 / number2
-    label.configure(text=str(res))
+    if operation == '+':
+        result = operand1 + operand2
+    if operation == '-':
+        result = operand1 - operand2
+    if operation == '/':
+        result = operand1 / operand2
+    if operation == '*':
+        result = operand1 * operand2
+    label.configure(text=str(result))
 
 
 def click(text):
     global activeStr
     global stack
-    if text == "CE":
+    if text == 'CE':
         stack.clear()
-        activeStr = ""
-        label.configure(text = "0")
-    elif "0" <=text <="9":
+        activeStr = ''
+        label.configure(text='0')
+    elif '0' <= text <= '9':
         activeStr += text
         label.configure(text=activeStr)
     elif text == '.':
@@ -77,6 +77,7 @@ for row in range(4):
         button = Button(root, text=buttons[row][col],
             command=lambda row=row, col=col: click(buttons[row][col]))
         button.grid(row=row + 2, column=col, sticky="nsew")
+
 
 root.grid_rowconfigure(6, weight=1)
 root.grid_columnconfigure(4, weight=1)
